@@ -1,5 +1,4 @@
 import CloseIcon from "../../../images/close_icon.png";
-
 export default function Popup(props) {
   const { title, children, onClose } = props;
 
