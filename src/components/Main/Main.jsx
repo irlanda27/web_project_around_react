@@ -99,7 +99,7 @@ export default function Main() {
             </div>
           </div>
         </div>
-        <section className="cards">
+        <section className="element">
           {cards.map((card) => (
             <Card
               card={card}
