@@ -45,6 +45,10 @@
     background-color: none;
     cursor: pointer;
     }
+
+    .element__like-button_is-active{
+
+    }
     
     .element__trash{
     width: 18px;

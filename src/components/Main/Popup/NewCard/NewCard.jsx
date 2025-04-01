@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-const NewCard = () => {
+const NewCard = ({ onAddPlaceSubmit }) => {
   const [cardName, setCardName] = useState("");
   const [cardLink, setCardLink] = useState("");
 
@@ -20,7 +20,7 @@ const NewCard = () => {
       cardLinkError: "",
     };
 
-    if (!cardName.trim().length < 2) {
+    if (cardName.trim().length < 2) {
       newErrors.cardNameError = "El título debe tener al menos 2 caracteres";
       valid = false;
     }
@@ -28,7 +28,8 @@ const NewCard = () => {
     setErrors(newErrors);
 
     if (valid) {
-      console.log("Nueva tarjeta", { cardName, cardLink });
+      onAddPlaceSubmit({ name: cardName, link: cardLink });
+      onClosePopup();
     }
   };
 
@@ -46,7 +47,9 @@ const NewCard = () => {
         maxLength="40"
         required
       />
-      <span id="input-title-error" className="input__message-error"></span>
+      <span id="input-title-error" className="input__message-error">
+        {errors.cardNameError}
+      </span>
 
       <input
         className="popup__input"
@@ -58,7 +61,9 @@ const NewCard = () => {
         onChange={(e) => setCardLink(e.target.value)}
         required
       />
-      <span id="input-image-url-error" className="input__message-error"></span>
+      <span id="input-image-url-error" className="input__message-error">
+        {errors.cardLinkError}
+      </span>
 
       <button className="popup__button" id="button-submitNewCard" type="submit">
         Guardar
