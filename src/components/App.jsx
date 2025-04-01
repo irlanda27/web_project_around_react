@@ -5,6 +5,7 @@ import Main from "./Main/Main.jsx";
 import ".././index.css";
 import api from "../utils/api.js";
 import NewCard from "../components/Main/Popup/NewCard/NewCard.jsx";
+import Footer from "./Footer/Footer.jsx";
 
 function App() {
   const [currentUser, setCurrentUser] = useState({});
@@ -99,7 +100,7 @@ function App() {
           handleUpdateUser={handleUpdateUser}
           onAddPlaceSubmit={handleAddPlaceSubmit}
         />
-        <NewCard onAddPlaceSubmit={handleAddPlaceSubmit} />
+        <Footer />
       </div>
     </CurrentUserContext.Provider>
   );
