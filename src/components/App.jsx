@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
-import { CurrentUserContext } from "./contexts/CurrentUserContext";
-import Header from "./components/Header/Header.jsx";
-import Main from "./components/Main/Main.jsx";
-import "./index.css";
-import api from "./utils/api.js";
-import NewCard from "./components/Main/Popup/NewCard/NewCard.jsx";
+import { CurrentUserContext } from "../contexts/CurrentUserContext.js";
+import Header from "./Header/Header.jsx";
+import Main from "./Main/Main.jsx";
+import ".././index.css";
+import api from "../utils/api.js";
+import NewCard from "../components/Main/Popup/NewCard/NewCard.jsx";
 
 function App() {
   const [currentUser, setCurrentUser] = useState({});
