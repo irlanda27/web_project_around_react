@@ -1,11 +1,12 @@
 import { useContext, useState } from "react";
 import { CurrentUserContext } from "../../../../contexts/CurrentUserContext";
 
-export default function EditProfile() {
-  const { currentUser, handleUpdateUser } = useContext(CurrentUserContext);
+export default function EditProfile({ handleUpdateUser }) {
+  const { currentUser } = useContext(CurrentUserContext);
   const { name, about } = currentUser;
   const [userName, setUserName] = useState(name);
   const [userAbout, setUserAbout] = useState(about);
+
   const handleSubmit = (e) => {
     e.preventDefault();
     handleUpdateUser({

@@ -42,13 +42,9 @@
     .element__like-button{
     width: 21px;
     height: 19px;
-    background-color: none;
     cursor: pointer;
-    }
-
-    .element__like-button_is-active{
-
-    }
+    background-color: transparent;
+}
     
     .element__trash{
     width: 18px;

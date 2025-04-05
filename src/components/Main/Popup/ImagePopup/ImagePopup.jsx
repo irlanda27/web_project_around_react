@@ -1,7 +1,7 @@
 import Popup from "../Popup";
 
 export default function ImagePopup(props) {
-  const { onClose, title, children } = props;
+  const { onClose } = props;
   console.log(props);
 
   return (
@@ -9,7 +9,7 @@ export default function ImagePopup(props) {
       <img
         className="popup__window-image"
         src={props.link}
-        alt="parquelavanois"
+        alt={props.name}
         id="popup-window-image"
       />
       <p className="popup__window-text">{props.name}</p>

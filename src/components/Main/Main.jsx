@@ -1,5 +1,6 @@
 import { useContext } from "react";
 import { CurrentUserContext } from "../../contexts/CurrentUserContext";
+import { useState } from "react";
 import lapiz from "../../images/lapicito.png";
 import userImage from "../../images/image.jpg";
 import editProfileButton from "../../images/edit_button.png";
@@ -20,9 +21,11 @@ export default function Main({
   onCardDelete,
   setPopup,
   onAddPlaceSubmit,
+  handleUpdateUser,
 }) {
   const { currentUser } = useContext(CurrentUserContext);
-
+  const [name, setName] = useState("test");
+  const [link, setLink] = useState("");
   const newCardPopup = {
     title: "Nuevo lugar",
     children: (
@@ -34,14 +37,18 @@ export default function Main({
   };
   const EditProfilePopup = {
     title: "Editar perfil",
-    children: <EditProfile />,
+    children: <EditProfile handleUpdateUser={handleUpdateUser} />,
   };
   const EditAvatarPopup = { title: "Editar avatar", children: <EditAvatar /> };
-  const imagePopup = { children: <ImagePopup /> };
 
-  const handleOpenImagePopup = () => {
-    setPopup(imagePopup);
+  const handleOpenImagePopup = (name, link) => {
+    setName(name);
+    setLink(link);
+    setPopup({ children: <ImagePopup name={name} link={link} /> });
+
+    console.log(name, link);
   };
+  console.log(name, link);
 
   return (
     <>

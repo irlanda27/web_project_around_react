@@ -11,13 +11,13 @@ function App() {
   const [currentUser, setCurrentUser] = useState({});
   const [popup, setPopup] = useState(null);
   const [cards, setCards] = useState([]);
+  const [selectedImage, setSelectedImage] = useState(null);
 
   const handleOpenPopup = (popup) => {
     setPopup(popup);
   };
 
   const handleClosePopup = () => {
-    console.log("cerrando popup");
     setPopup(null);
   };
 
@@ -43,11 +43,15 @@ function App() {
   };
 
   const handleCardLike = async (card) => {
+    console.log("Like clickeado en:", card);
     try {
       const newCard = await api.likeButton(card._id);
-      setCards((state) =>
-        state.map((currentCard) =>
-          currentCard._id === card._id ? newCard : currentCard
+
+      setCards((prevState) =>
+        prevState.map((currentCard) =>
+          currentCard._id === card._id
+            ? { ...currentCard, isLiked: newCard.isLiked }
+            : currentCard
         )
       );
     } catch (error) {
@@ -75,6 +79,14 @@ function App() {
     }
   };
 
+  const handleOpenImage = (name, link) => {
+    setSelectedImage({ name, link });
+  };
+
+  const handleCloseImage = () => {
+    setSelectedImage(null);
+  };
+
   useEffect(() => {
     api.getUser().then((data) => {
       setCurrentUser(data);
@@ -99,8 +111,17 @@ function App() {
           onCardDelete={handleCardDelete}
           handleUpdateUser={handleUpdateUser}
           onAddPlaceSubmit={handleAddPlaceSubmit}
+          onOpenImage={handleOpenImage}
         />
         <Footer />
+        {selectedImage && (
+          <div className="image-modal">
+            <div className="image-modal-content">
+              <img src={selectedImage.link} alt={selectedImage.name} />
+              <button onClick={handleCloseImage}></button>
+            </div>
+          </div>
+        )}
       </div>
     </CurrentUserContext.Provider>
   );

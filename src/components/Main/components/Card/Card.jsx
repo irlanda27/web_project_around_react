@@ -2,22 +2,26 @@ import { useState } from "react";
 import trashIcon from "../../../../images/trash_icon.png";
 import cardImage from "../../../../images/valle de yosemite.jpg";
 import likeButton from "../../../../images/Vector_corazon.svg";
+import likeButtonActive from "../../../../images/Union.png";
 
 export default function Card(props) {
-  const { name, link, isLiked, _id } = props.card;
-  const handleClick = () => {
-    props.handleOpenImagePopup(name, link);
-  };
-
+  const { name, link, isLiked } = props.card;
   const [liked, setLiked] = useState(isLiked);
 
-  const handleLikeClick = () => {
-    setLiked(!liked);
-    props.onCardLike(props.card);
+  const handleClick = () => {
+    props.handleOpenImagePopup(props.card.name, props.card.link);
   };
+
   const cardLikeButtonClassName = `element__like-button ${
     liked ? "element__like-button_active" : ""
   }`;
+
+  const likeButtonSrc = liked ? likeButtonActive : likeButton;
+
+  const handleLikeClick = () => {
+    setLiked(!liked);
+    props.onCardLike({ ...props.card, isLiked: !liked });
+  };
 
   const handleDeleteClick = () => {
     props.onCardDelete(props.card);
@@ -44,7 +48,7 @@ export default function Card(props) {
           <img
             className={cardLikeButtonClassName}
             onClick={handleLikeClick}
-            src={likeButton}
+            src={likeButtonSrc}
             alt="botonlike"
             id="like-button"
           />
