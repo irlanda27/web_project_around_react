@@ -29,6 +29,7 @@ border-style: none;
 
 
 .popup__title{
+font-family: Inter;
 font-size: 24px;
 font-weight: 900;
 line-height: 29px;
